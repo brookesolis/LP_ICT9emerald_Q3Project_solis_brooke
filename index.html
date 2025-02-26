@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Fare Guide - Manila Rail Transit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .fare-section, .ticket-types, .tips-section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">MRT & LRT Fare Guide</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule">Train Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header class="text-center">
+            <h1>Welcome to the Manila Rail Transit Fare Guide</h1>
+            <p>Get the latest train fares, schedules, and tips for the Manila Metro Rail Transit (MRT) and Manila Light Rail Transit (MLT).</p>
+        </header>
+
+        <!-- Fare Information Section -->
+        <div class="fare-section">
+            <h2>Fare Rates</h2>
+            <p>Check the fares for different types of passengers:</p>
+            <ul>
+                <li>Regular fare: Php 13 – 28</li>
+                <li>Discounted fare (for Senior Citizens, PWD, and Students): 20% off the regular fare</li>
+            </ul>
+        </div>
+
+        <!-- Ticket Types -->
+        <div class="ticket-types">
+            <h3>Types of Tickets</h3>
+            <p>Select the type of ticket you need:</p>
+            <ul>
+                <li>Single Journey Ticket</li>
+                <li>Stored Value Ticket (Beep Card)</li>
+                <li>Season Ticket</li>
+            </ul>
+        </div>
+
+        <!-- Station Selector Form -->
+        <div class="station-selector">
+            <h3>Find the Fare</h3>
+            <form id="fare-form">
+                <div class="mb-3">
+                    <label for="from-station" class="form-label">From Station</label>
+                    <select class="form-select" id="from-station">
+                        <option value="roosevelt">Roosevelt</option>
+                        <option value="baclaran">Baclaran</option>
+                        <!-- Add more stations here -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="to-station" class="form-label">To Station</label>
+                    <select class="form-select" id="to-station">
+                        <option value="roosevelt">Roosevelt</option>
+                        <option value="baclaran">Baclaran</option>
+                        <!-- Add more stations here -->
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="calculateFare()">Get Fare</button>
+            </form>
+            <div id="fare-result"></div>
+        </div>
+
+        <!-- Passenger Tips and Reminders Section -->
+        <div class="tips-section">
+            <h3>Passenger Tips and Reminders</h3>
+            <ul>
+                <li>Always check your balance before boarding.</li>
+                <li>Observe proper etiquette and give way to senior citizens and PWDs.</li>
+                <li>Keep your belongings secure at all times.</li>
+            </ul>
+        </div>
+
+        <!-- Train Schedule Section -->
+        <div id="schedule">
+            <h3>Train Schedule</h3>
+            <p>The trains operate from 5:00 AM to 10:00 PM daily. For more specific times, please refer to the official website or check the station schedules.</p>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div id="contact">
+            <h3>Contact Information</h3>
+            <p>If you have any inquiries, feel free to reach out:</p>
+            <ul>
+                <li>Email: info@mrtlrt.com</li>
+                <li>Phone: +63 2 123 4567</li>
+            </ul>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="comment-section">
+            <h3>Leave a Comment</h3>
+            <form>
+                <div class="mb-3">
+                    <textarea class="form-control" placeholder="Your feedback" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Created by: Brooke Solis | Grade: 9 | Section: Emerald</p>
+        <p>Source: <a href="https://www.metrolinemap.com/metro/manila/" target="_blank">Metro Line Map</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Fare calculation logic
+        function calculateFare() {
+            var fromStation = document.getElementById("from-station").value;
+            var toStation = document.getElementById("to-station").value;
+            var fareResult = document.getElementById("fare-result");
+
+            // Basic fare calculation (just for illustration, can be modified based on station distance)
+            var fare = 20; // Assume a flat fare of 20 PHP for now
+            fareResult.innerHTML = "Your fare from " + fromStation.charAt(0).toUpperCase() + fromStation.slice(1) +
+                " to " + toStation.charAt(0).toUpperCase() + toStation.slice(1) + " is Php " + fare + ".";
+
+            // If it's a discount, apply 20% off
+            var discount = fare * 0.2;
+            var discountedFare = fare - discount;
+            fareResult.innerHTML += "<br><br>Discounted Fare: Php " + discountedFare.toFixed(2);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
